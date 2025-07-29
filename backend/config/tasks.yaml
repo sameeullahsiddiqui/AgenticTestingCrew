@@ -1,0 +1,127 @@
+discover_application:
+  description: >
+    Recursively crawl the application starting at {BASE_URL}, discovering up to 100 internal pages. 
+    For each page, extract UI elements (forms, buttons, uploads), simulate critical flows (login, add to cart, etc.), 
+    attempt form submissions with valid data, and collect screenshots/logs in {SAMPLE_DIR}/screenshots.
+    also follow important instructions {INSTRUCTIONS}
+  expected_output: >
+    {
+      "pages": [...],
+      "uiElements": {...},
+      "flows": [...],
+      "screenshots": "{SAMPLE_DIR}/screenshots",
+      "logs": "{SAMPLE_DIR}/logs"
+    }
+  agent: discovery
+  context: []
+  output_file: /{SAMPLE_DIR}/discovery_summary.json
+
+build_site_map:
+  description: >
+    Compile the structured data from the discovery process into a unified site map JSON 
+    including pages, UI elements, user flows, and statistics.
+  expected_output: >
+    JSON site map stored at {SAMPLE_DIR}/site_map.json.
+  agent: discovery
+  context:
+    - discover_application
+  output_file: /{SAMPLE_DIR}/site_map.json
+
+validate_discovery:
+  description: >
+    Validate if login was successful, application was explored post-login, and key user actions were performed.
+    Return a structured validation summary.
+  expected_output: >
+    {
+      "loginSuccess": true,
+      "postLoginPagesVisited": 5,
+      "distinctActions": ["add_to_cart", "checkout", "form_submission"]
+    }
+  agent: validator
+  context:
+    - build_site_map
+
+review_discovery:
+  description: >
+    Review discovery outcome and validation summary to decide if the functional discovery is complete.
+    Confirm at least 3 distinct actions post-login and successful exploration.
+  expected_output: >
+    Approved ✅ - Functional discovery is complete.
+    OR
+    Retry 🔁 - Issues found in login or coverage.
+  agent: reviewer
+  context:
+    - validate_discovery
+
+generate_test_plan:
+  description: >
+    Analyze the site map and discovery results to create a structured test plan.
+    Include both happy and edge cases across features.
+    The plan should cover key user flows, edge cases, and validation points for each identified feature.
+  expected_output: >
+    Generate detailed test cases for login, cart, and checkout flows. Each test case should include:
+    - Test ID
+    - Title
+    - Description
+    - Preconditions
+    - Steps (numbered list)
+    - Expected Results
+    
+    Format the output in a readable structured text format (NOT as a Markdown table). Each test case should be easy to scan and visually separated from others.
+
+  agent: planning
+  context:
+    - build_site_map
+
+execute_tests:
+  description: >
+    - Execute all test cases defined in the test plan using the MCP Playwright server.
+    - Ensure browser runs with headless set to {HEADLESS} and capture necessary evidence during execution i.e screenshots and logs.
+  expected_output: >
+    A structured raw test result file including:
+    - Execution status (Pass/Fail) per test case
+    - Screenshot paths
+    - Logs for each test step
+    - Any encountered errors and error traces
+  agent: execution
+  context:
+    - generate_test_plan
+
+generate_test_report:
+  description: >
+    Analyze raw test execution results and generate a final Markdown test report.
+    Summarize overall test coverage, pass/fail statistics, and include links to logs and screenshots for evidence.
+  expected_output: >
+    A well-formatted Markdown summary report including:
+    - Test Summary (Total, Passed, Failed)
+    - Detailed Results Table
+    - Notable Failures with error context
+    - Screenshot and log references
+
+  agent: reporting
+  context:
+    - execute_tests
+
+final_approval:
+  description: >
+    Review the full pipeline output and decide if the project is ready to close or requires rework.
+  expected_output: >
+    Approved ✅ or Retry 🔁 with feedback.
+  agent: pm
+  context:
+    - generate_test_report
+
+# approve_final_pipeline:
+#   description: >
+#     Perform a comprehensive review of the entire pipeline output—including discovery findings,
+#     test plan quality, execution results, and final report. Determine if the project is ready to close or needs rework.
+#   expected_output: >
+#     A clear decision: Approved ✅ if the pipeline meets expectations, or Retry 🔁 with feedback on required changes.
+#   agent: pm
+#   context:
+#     - discovery_task
+#     - planning_task
+#     - execution_task
+#     - reporting_task
+
+
