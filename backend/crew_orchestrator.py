@@ -65,6 +65,7 @@ class CrewOrchestrator:
 
             inputs['SAMPLE_DIR'] = samples_dir
 
+            inputs = self.update_instructions_with_pre_steps(inputs)
             result = crew_instance.crew().kickoff(inputs= inputs)
 
             await self.emit_log("\n\n=== FINAL REPORT ===\n")
@@ -82,6 +83,20 @@ class CrewOrchestrator:
             await self.emit_log(f"Pipeline error: {e}")
             raise
 
+    def update_instructions_with_pre_steps(self, inputs, file_path="agent_instructions/mandatory_pre_steps.txt"):
+        try:
+            with open(file_path, "r") as file:
+                pre_steps = file.read()
+            
+            pre_steps = pre_steps.replace("{BASE_URL}", inputs["base_url"])
+            inputs["instructions"] += "\n\n" + pre_steps
+            return inputs
+        
+        except FileNotFoundError:
+            print(f"File not found: {file_path}")
+            return inputs
+        
+        
     async def emit_log(self, message: str):
         # print(message)
         if self.socket_manager:

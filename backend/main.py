@@ -174,6 +174,15 @@ def download_file(run_id: str, filename: str):
         # Uncomment below if you want forced download dialog in browser
         # headers={"Content-Disposition": f"attachment; filename={filename}"}
     )
+@app.get("/api/usage")
+def get_usage():
+    usage_data = {
+        "tokens_used": 123456,
+        "requestes_made": 789,
+        "rate_limit_remaining": 1000
+    }
+    
+    return usage_data
 
 # Static files
 app.mount("/static", StaticFiles(directory=FS_PATH), name="static")

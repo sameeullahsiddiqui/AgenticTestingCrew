@@ -1,5 +1,6 @@
 import asyncio
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 from typing import List
 from crewai import Agent, Crew, Process, Task, LLM
@@ -46,13 +47,15 @@ class TestingCrew():
 
     @classmethod
     async def create(cls, test_run_id):
-        load_dotenv()
         
+        env_path = Path(__file__).parent/ ".env"
+        load_dotenv(dotenv_path= env_path)
+
         azure_llm = LLM(
             model="azure/gpt-4.1",
-            api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-            BASE_URL=os.getenv("AZURE_OPENAI_ENDPOINT"),
-            api_version=os.getenv("AZURE_OPENAI_API_VERSION")
+            api_key=os.getenv("AZURE_API_KEY"),
+            base_url=os.getenv("AZURE_ENDPOINT"),
+            api_version=os.getenv("AZURE_API_VERSION")
         )
 
         tools = [FileWriterTool(), FileReadTool()]
@@ -260,5 +263,6 @@ class TestingCrew():
             tasks=filtered_tasks,
             tools=self.tools,
             process=Process.sequential,
-            verbose=True
+            verbose=True,
+            telemetry = False
         )

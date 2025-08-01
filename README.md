@@ -2,6 +2,8 @@
 
 This repository implements a **multi-agent automation testing system** using OpenAI's Agents SDK and Microsoft’s [MCP Playwright Server](https://www.npmjs.com/package/@executeautomation/playwright-mcp-server).
 
+@mcp@latest --config path/to/config/json
+
 It is designed to:
 - Automatically **discover** a complete multi-page web app
 - **Plan** test cases (happy + negative + upload scenarios)
