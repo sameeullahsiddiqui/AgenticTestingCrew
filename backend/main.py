@@ -174,12 +174,13 @@ def download_file(run_id: str, filename: str):
         # Uncomment below if you want forced download dialog in browser
         # headers={"Content-Disposition": f"attachment; filename={filename}"}
     )
-@app.get("/api/usage")
+@app.get("/usage")
 def get_usage():
     usage_data = {
-        "tokens_used": 123456,
-        "requestes_made": 789,
-        "rate_limit_remaining": 1000
+        "model": "gpt4.1",
+        "tokensUsed": 123456,
+        "costUSD": 789,
+        "date": ""
     }
     
     return usage_data

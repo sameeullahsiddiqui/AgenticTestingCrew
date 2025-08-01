@@ -8,6 +8,7 @@ import Stats from './components/Stats';
 import { connectWebSocket } from './websocket';
 import { LogMessage } from './types';
 import axios from 'axios';
+import Dashboard from './components/UsageDashboard';
 
 const config = {
   apiBase: import.meta.env.VITE_API_BASE || 'http://localhost:8000',
@@ -134,6 +135,7 @@ const filteredLogs = logs.filter((log) => {
             {selectedRunId && <OutputFiles refreshSignal={refreshCounter} runId={selectedRunId} />}
           </div>
           <Stats />
+          <Dashboard />
         </div>
       </main>
     </div>

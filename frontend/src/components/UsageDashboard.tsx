@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Activity } from "lucide-react";
 import axios from "axios";
+import { llmCost } from "../api";
 
 interface UsageData {
   model: string;
@@ -20,8 +19,8 @@ const Dashboard = () => {
     const fetchUsage = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("/api/azure-openai/usage");
-        setUsage(response.data);
+        const response = await llmCost();
+        setUsage(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error("Failed to fetch usage data:", error);
       } finally {
@@ -36,60 +35,67 @@ const Dashboard = () => {
     ? usage
     : usage.filter(u => u.model === selectedModel);
 
-  const totalTokens = filteredUsage.reduce((acc, u) => acc + u.tokensUsed, 0);
-  const totalCost = filteredUsage.reduce((acc, u) => acc + u.costUSD, 0);
+  const totalTokens = Array.isArray(filteredUsage)
+    ? filteredUsage.reduce((acc, u) => acc + u.tokensUsed, 0)
+    : 0;
+
+  const totalCost = Array.isArray(filteredUsage)
+    ? filteredUsage.reduce((acc, u) => acc + u.costUSD, 0)
+    : 0;
 
   const models = Array.from(new Set(usage.map(u => u.model)));
 
   return (
-    <div className="p-6 space-y-6">
-      <h1 className="text-2xl font-bold">Azure OpenAI Usage Dashboard</h1>
+    <div>      
       {loading ? (
-        <div className="text-center text-gray-500">Loading usage data, please wait...</div>
+        <div style={{ textAlign: 'center', color: 'gray', marginTop: '1rem' }}>Loading usage data, please wait...</div>
       ) : (
-        <Tabs defaultValue="all" className="w-full" onValueChange={setSelectedModel}>
-          <TabsList>
-            <TabsTrigger value="all">All Models</TabsTrigger>
+        <div>
+          {/* <div style={{ marginBottom: '1rem' }}>
+            <button onClick={() => setSelectedModel('all')} style={{ marginRight: '0.5rem' }}>All Models</button>
             {models.map(model => (
-              <TabsTrigger key={model} value={model}>{model}</TabsTrigger>
+              <button key={model} onClick={() => setSelectedModel(model)} style={{ marginRight: '0.5rem' }}>{model}</button>
             ))}
-          </TabsList>
-          <TabsContent value={selectedModel}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card>
-                <CardContent className="p-4">
-                  <h2 className="text-lg font-semibold">Total Tokens Used</h2>
-                  <p className="text-2xl font-bold text-blue-600">{totalTokens.toLocaleString()}</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <h2 className="text-lg font-semibold">Total Cost (USD)</h2>
-                  <p className="text-2xl font-bold text-green-600">${totalCost.toFixed(2)}</p>
-                </CardContent>
-              </Card>
+          </div> */}
+
+          {/* Stats Card Replacement for Cost */}
+          <div className="card bg-slate-800 bg-opacity-50 rounded-xl p-6 border border-slate-700 mb-6" style={{ color: '#fff' }}>
+            <h3 className="text-xl font-semibold flex items-center gap-3 mb-4">
+              <Activity className="text-yellow-400 w-5 h-5" />
+              Cost
+            </h3>
+            <div className="space-y-2">
+              <div className="flex justify-between">
+                <span>Total Cost</span>
+                <span className="font-bold">${totalCost.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Total Tokens</span>
+                <span className="font-bold">{totalTokens.toLocaleString()}</span>
+              </div>
             </div>
-            <div className="mt-6 space-y-4">
-              {filteredUsage.map((u, i) => (
-                <Card key={i}>
-                  <CardContent className="p-4">
-                    <div className="flex justify-between">
-                      <div>
-                        <p className="font-semibold">{u.date}</p>
-                        <p className="text-sm text-gray-500">Model: {u.model}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-bold">{u.tokensUsed.toLocaleString()} tokens</p>
-                        <p className="text-green-600">${u.costUSD.toFixed(4)}</p>
-                      </div>
-                    </div>
-                    <Progress value={(u.tokensUsed / totalTokens) * 100} className="mt-2" />
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+          </div>
+
+          <div style={{ marginTop: '1.5rem' }}>
+            {filteredUsage.map((u, i) => (
+              <div key={i} style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '1rem', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <div>
+                    <p style={{ fontWeight: '600' }}>{u.date}</p>
+                    <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Model: {u.model}</p>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <p style={{ fontWeight: 'bold' }}>{u.tokensUsed.toLocaleString()} tokens</p>
+                    <p style={{ color: '#16a34a' }}>${u.costUSD.toFixed(4)}</p>
+                  </div>
+                </div>
+                <div style={{ backgroundColor: '#e5e7eb', borderRadius: '4px', overflow: 'hidden', marginTop: '0.5rem' }}>
+                  <div style={{ width: `${(u.tokensUsed / totalTokens) * 100}%`, backgroundColor: '#2563eb', height: '8px' }}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

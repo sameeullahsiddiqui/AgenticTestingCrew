@@ -22,3 +22,8 @@ export const listFiles = async (runId: string) => {
 export const downloadFile = (filename: string) => {
   window.open(`${BASE_URL}/download/${filename}`, '_blank');
 };
+
+export const llmCost = async () => {
+  const res = await axios.get(`${BASE_URL}/usage`);
+  return res.data;
+};
