@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Page & Layout --- */
+html, body {
+  @apply bg-samee-black text-samee-yellow min-h-screen font-sans antialiased;
+}
+
+/* --- Card Containers --- */
+.card {
+  @apply bg-samee-black text-samee-yellow p-6 rounded-xl border border-samee-yellow;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4 {
+  @apply text-samee-yellow font-bold;
+}
+label {
+  @apply text-sm font-semibold text-samee-yellow;
+}
+p, span, div {
+  @apply text-samee-yellow;
+}
+
+/* --- Input Controls --- */
+input, textarea, select {
+  @apply text-samee-black bg-samee-white border border-samee-yellow rounded-md px-4 py-2 placeholder-samee-black font-medium focus:outline-none focus:ring-2 focus:ring-samee-yellow;
+}
+
+/* --- Buttons --- */
+.run-button, button {
+  @apply bg-samee-yellow text-samee-black px-6 py-2 rounded-lg font-semibold hover:bg-yellow-400 active:scale-95 transition-all duration-150;
+}
+
+/* --- Toggle Switch --- */
+.toggle-switch {
+  @apply w-12 h-6 bg-samee-yellow rounded-full relative transition-colors duration-200;
+}
+.toggle-switch.active {
+  @apply bg-samee-red;
+}
+.toggle-knob {
+  @apply w-5 h-5 bg-samee-black rounded-full absolute top-[2px] left-[2px] transition-transform duration-200;
+}
+.toggle-switch.active .toggle-knob {
+  @apply translate-x-6 bg-samee-black;
+}
+
+/* --- Scrollbars --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-samee-black;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-samee-yellow rounded-full;
+}

@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@modelcontextprotocol/server-filesystem": "^2025.7.1",
+    "@playwright/mcp": "^0.0.34",
+    "playwright": "^1.55.0-alpha-2025-08-12"
+  },
+  "scripts": {
+    "record": "node scripts/start_recording.js",
+    "build:basic-nav": "node scripts/build_basic_nav_from_seed.js scripts/seed_navigation.js backend/fs_files/navigation/basic_nav.json",
+    "explore": "node scripts/explore_blazor_bfs.js"
+  }
+}

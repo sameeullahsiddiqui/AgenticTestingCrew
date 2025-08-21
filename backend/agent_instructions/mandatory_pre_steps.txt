@@ -1,0 +1,38 @@
+MANDATORY PRE-STEPS FOR TESTING {BASE_URL}:
+
+1. SAFETY PROTOCOLS:
+   - Only execute safe, read-only operations during exploration
+   - Avoid any Create, Update, Delete operations unless explicitly requested
+   - Do not submit forms or make data modifications
+   - Focus on navigation, viewing, and documentation activities
+
+2. AUTHENTICATION HANDLING:
+   - If login is required, document the authentication flow
+   - Respect session timeouts and re-authentication needs
+   - Note any SSO or multi-factor authentication requirements
+
+3. BROWSER STABILITY:
+   - Wait for page load completion before interactions
+   - Handle dynamic content loading appropriately
+   - Resize browser window for optimal element visibility
+   - Take fresh snapshots before element interactions
+
+4. ERROR HANDLING:
+   - Document any navigation errors or broken links
+   - Note pages that fail to load or display correctly
+   - Record accessibility issues or UI anomalies
+   - Continue exploration despite minor errors
+
+5. EVIDENCE COLLECTION:
+   - Capture screenshots for visual evidence
+   - Save HTML snapshots for technical analysis
+   - Document navigation paths for reproducibility
+   - Record all discovered URLs and page relationships
+
+6. COMPREHENSIVE COVERAGE:
+   - Explore all menu items and navigation options
+   - Investigate tab systems and expandable sections
+   - Document modal dialogs and popup content
+   - Map data grids and their action capabilities
+
+These pre-steps ensure systematic, safe, and comprehensive application exploration.

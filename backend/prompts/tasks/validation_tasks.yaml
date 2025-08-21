@@ -1,0 +1,113 @@
+# Validation Task Components
+
+validate_discovery:
+  title: "Discovery Validation Task"
+  content: |
+    Comprehensive validation of the Blazor application discovery results against all specified requirements.
+    
+    VALIDATION CHECKLIST - ALL CRITERIA MUST PASS:
+    
+    ✓ **Navigation Completeness Validation**:
+    - Verify left sidebar navigation was fully expanded and mapped
+    - Confirm all menu items and submenus were discovered and documented
+    - Validate that expandable menus were clicked and child items revealed
+    - Check navigation hierarchy completeness and accuracy
+    
+    ✓ **Page Discovery Volume Validation**:
+    - CRITICAL: Verify MINIMUM {TARGET_PAGES}+ unique pages/screens were discovered
+    - Confirm each page has unique URL, title, and business purpose documented
+    - Validate page categorization (dashboard, data management, configuration, etc.)
+    - Check for comprehensive page-level analysis completion
+    
+    ✓ **UI Element Analysis Validation**:
+    - Verify each page has complete actionable element inventory
+    - Confirm button, link, icon, and form element documentation
+    - Validate tab system exploration and content mapping
+    - Check data grid analysis with row-level action documentation
+    
+    ✓ **Recursive Exploration Validation**:
+    - Confirm safe actions were executed to discover child pages/content
+    - Verify parent-child page relationships are properly mapped
+    - Check modal dialog and popup content discovery
+    - Validate action-result documentation completeness
+    
+    ✓ **User Journey Mapping Validation**:
+    - Verify comprehensive workflow documentation exists
+    - Confirm end-to-end process mapping from menu to completion
+    - Validate business value context for each major journey
+    - Check inter-page relationship and transition documentation
+    
+    ✓ **Evidence Package Validation**:
+    - Verify screenshot evidence for all major pages and interfaces
+    - Confirm HTML source snapshots for technical verification
+    - Check comprehensive logging and error documentation
+    - Validate navigation path instructions for reproducibility
+    
+    ✓ **Blazor-Specific Analysis Validation**:
+    - Confirm component interaction patterns were documented
+    - Verify dynamic content loading behavior analysis
+    - Check tab system interdependencies and relationships
+    - Validate grid-to-detail page flow documentation
+    
+    ✓ **Error and Edge Case Documentation**:
+    - Verify all navigation errors were logged and categorized
+    - Confirm broken links and non-functional elements documented  
+    - Check UI/UX issues and accessibility problems recorded
+    - Validate troubleshooting context provided for each error
+    
+    ✓ **Business Context and Value Validation**:
+    - Confirm each page's business purpose is clearly documented
+    - Verify user value proposition is explained for major features
+    - Check workflow context and process understanding
+    - Validate feature prioritization based on business importance
+    
+    FAILURE CONDITIONS - REQUIRE RETRY:
+    - Less than {TARGET_PAGES} unique pages discovered
+    - Navigation hierarchy incomplete or inaccurate
+    - Missing actionable element analysis on any page
+    - Insufficient recursive exploration depth
+    - Inadequate user journey documentation
+    - Missing evidence package components
+    - Incomplete error documentation
+
+review_discovery:
+  title: "Discovery Review Task"
+  content: |
+    Review comprehensive discovery outcome and validation results to determine if the Blazor application 
+    exploration meets all requirements and quality standards for proceeding to test planning phase.
+    
+    REVIEW CRITERIA - ALL MUST BE SATISFIED:
+    
+    **Critical Success Factors:**
+    - Login authentication was successful and maintained throughout exploration
+    - MINIMUM {TARGET_PAGES}+ unique pages/screens discovered and documented
+    - Complete left navigation hierarchy mapped with all menu/submenu items
+    - Comprehensive UI element analysis completed for each page
+    - Recursive safe action execution performed to discover child content
+    - User journey mapping covers major application workflows
+    
+    **Quality Assessment:**
+    - Navigation completeness score meets standards (90%+ coverage)
+    - Page analysis depth is sufficient for test case generation
+    - Business context is clearly documented for all major features
+    - Error documentation provides actionable troubleshooting information
+    - Evidence package (screenshots, HTML, logs) is comprehensive
+    
+    **Blazor-Specific Requirements:**
+    - Tab system exploration is thorough with content mapping
+    - Data grid analysis includes row-level actions and operations
+    - Component interaction patterns are documented
+    - Dynamic loading behavior is analyzed and recorded
+    - Modal dialog workflows are mapped and understood
+    
+    **Readiness for Test Planning:**
+    - Sufficient page diversity for comprehensive test case creation
+    - Clear understanding of application business flows and user journeys
+    - Actionable element inventory supports detailed test script generation
+    - Error conditions and edge cases identified for negative testing
+    - Application architecture and navigation patterns understood
+    
+    DECISION LOGIC:
+    - **APPROVED**: All validation criteria passed, {TARGET_PAGES}+ pages discovered, comprehensive analysis complete
+    - **APPROVED with Notes**: Minor gaps identified but sufficient for test planning, document recommendations
+    - **RETRY Required**: Critical requirements not met, insufficient page coverage, or major analysis gaps

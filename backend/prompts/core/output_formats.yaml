@@ -1,0 +1,157 @@
+# Standard Output Formats and Templates
+
+discovery_json_format:
+  title: "Discovery Output JSON Format"
+  content: |
+    ```json
+    {
+      "application_name": "string",
+      "application_type": "Blazor",
+      "discovery_date": "YYYY-MM-DD",
+      "navigation_structure": {
+        "sidebar_expanded": true,
+        "menu_hierarchy": [
+          {
+            "parent_menu": "string",
+            "child_menus": ["string"],
+            "expansion_required": boolean,
+            "navigation_path": "string"
+          }
+        ],
+        "total_menu_items": 0,
+        "expandable_menus": 0
+      },
+      "pages_discovered": [
+        {
+          "page_id": "string",
+          "page_title": "string",
+          "url": "string",
+          "navigation_path": "Menu > Submenu > Page",
+          "business_purpose": "string",
+          "page_type": "grid|form|dashboard|detail|configuration",
+          "actionable_elements": [
+            {
+              "element_type": "button|link|icon|tab|grid_action",
+              "element_id": "string",
+              "element_text": "string",
+              "purpose": "string",
+              "safety_level": "safe|unsafe|unknown",
+              "action_result": "string"
+            }
+          ],
+          "tab_systems": [...],
+          "data_grids": [...],
+          "child_pages_discovered": [...],
+          "screenshot_path": "string",
+          "html_snapshot_path": "string"
+        }
+      ],
+      "user_journeys": [...],
+      "errors_encountered": [...],
+      "coverage_metrics": {
+        "pages_discovered": 0,
+        "target_minimum": 100,
+        "actionable_elements_identified": 0,
+        "screenshots_captured": 0
+      }
+    }
+    ```
+
+validation_output_format:
+  title: "Validation Output Format"
+  content: |
+    ```json
+    {
+      "loginSuccess": true,
+      "validationResults": {
+        "navigationCompletenessValid": boolean,
+        "pageDiscoveryVolumeValid": boolean,
+        "uiElementAnalysisValid": boolean,
+        "recursiveExplorationValid": boolean,
+        "userJourneyMappingValid": boolean,
+        "evidencePackageValid": boolean
+      },
+      "metrics": {
+        "pagesDiscovered": 0,
+        "targetMinimum": 100,
+        "menuItemsExplored": 0,
+        "actionableElementsIdentified": 0
+      },
+      "qualityScore": 0-100,
+      "readinessAssessment": "Complete|Needs Additional Discovery|Requires Retry"
+    }
+    ```
+
+evidence_package_format:
+  title: "Evidence Package Structure"
+  content: |
+    EVIDENCE PACKAGE REQUIREMENTS:
+    - **Screenshots**: Full-page captures for each major page and interface state
+    - **HTML Snapshots**: Complete DOM source for technical analysis and verification
+    - **Navigation Logs**: Step-by-step instructions for reproducing discoveries
+    - **Error Documentation**: Detailed logs with troubleshooting context
+    - **Metadata Files**: JSON summaries with structured discovery data
+
+sitemap_json_format:
+  title: "Site Map JSON Output Format"
+  content: |
+    ```json
+    {
+      "site_map": {
+        "application_name": "string",
+        "base_url": "{BASE_URL}",
+        "generated_date": "YYYY-MM-DD",
+        "total_pages_mapped": 0,
+        "navigation_depth": 0,
+        "site_hierarchy": {
+          "root_pages": [
+            {
+              "page_name": "string",
+              "url": "string",
+              "page_type": "landing|dashboard|index",
+              "child_pages": [
+                {
+                  "page_name": "string", 
+                  "url": "string",
+                  "navigation_path": "Parent > Child",
+                  "access_method": "menu|link|button|direct",
+                  "business_function": "string",
+                  "child_pages": [...]
+                }
+              ]
+            }
+          ]
+        },
+        "functional_areas": [
+          {
+            "area_name": "string",
+            "description": "string",
+            "contained_pages": ["string"],
+            "primary_workflows": ["string"],
+            "access_roles": ["string"]
+          }
+        ],
+        "navigation_patterns": {
+          "primary_navigation": "sidebar|topbar|mixed",
+          "breadcrumb_support": boolean,
+          "search_functionality": boolean,
+          "deep_linking": boolean
+        },
+        "cross_references": [
+          {
+            "source_page": "string",
+            "target_page": "string", 
+            "relationship_type": "workflow|reference|dependency",
+            "connection_method": "link|button|auto_redirect"
+          }
+        ],
+        "accessibility_notes": [
+          {
+            "page": "string",
+            "accessibility_level": "high|medium|low",
+            "alternative_access": ["string"]
+          }
+        ]
+      }
+    }
+    ```

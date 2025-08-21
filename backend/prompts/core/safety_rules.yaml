@@ -1,0 +1,45 @@
+# Safety Rules and Error Handling
+
+exploration_safety_rules:
+  title: "Safe Exploration Guidelines"
+  content: |
+    SAFETY RULES FOR BLAZOR EXPLORATION:
+    - ❌ **AVOID Destructive Actions**: Never click Delete, Remove, Purge, Clear Data buttons
+    - ❌ **AVOID Form Submissions**: Don't submit forms that Create/Modify/Delete data
+    - ❌ **AVOID Administrative Changes**: Skip user management, permission changes, system settings
+    - ✅ **FOCUS on View Operations**: Prioritize View, Details, Configure, Export, Browse actions
+    - ✅ **SAFE Navigation**: Menu navigation, tab switching, pagination, search/filtering
+    - ✅ **READ-ONLY Analysis**: Data viewing, report generation, information display
+    - ✅ **DOCUMENTATION Focus**: Record functionality without executing destructive operations
+
+error_handling_strategy:
+  title: "Error Handling and Recovery Strategy" 
+  content: |
+    ERROR HANDLING METHODOLOGY:
+    - **Graceful Degradation**: Continue exploration despite individual page failures
+    - **Error Documentation**: Log all errors with context, page, and attempted action
+    - **Recovery Attempts**: Retry failed actions up to 2 times with exponential backoff
+    - **State Preservation**: Maintain application state and navigation context
+    - **Alternative Paths**: Find alternate routes to inaccessible content
+    - **Comprehensive Logging**: Record error types, frequency, and impact on exploration
+
+navigation_failure_recovery:
+  title: "Navigation Failure Recovery"
+  content: |
+    NAVIGATION FAILURE HANDLING:
+    - **Timeout Handling**: Wait 5-10 seconds for page loads, capture partial state if needed
+    - **Broken Link Management**: Document broken links, continue with next navigation item
+    - **Access Denied Recovery**: Log permission issues, attempt alternative access paths
+    - **JavaScript Error Handling**: Continue exploration despite client-side script errors
+    - **Network Issue Resilience**: Implement retry logic for network-related failures
+
+validation_and_verification:
+  title: "Validation and Verification Rules"
+  content: |
+    VALIDATION AND VERIFICATION METHODOLOGY:
+    - **Page Load Confirmation**: Verify complete page rendering before analysis
+    - **Component State Validation**: Ensure Blazor components are fully initialized
+    - **Navigation Path Verification**: Confirm breadcrumb accuracy and navigation consistency
+    - **Element Interaction Verification**: Test element responsiveness before documentation
+    - **Content Completeness Check**: Verify all page content is loaded and accessible
+    - **Cross-Browser Consistency**: Note any browser-specific behavior or issues

@@ -1,0 +1,134 @@
+# Fine-tuning Configuration for CrewAI Training
+
+# Model Configuration
+model:
+  base_model: "gpt-4-1106-preview"  # Base Azure OpenAI model
+  custom_model_name: "crewai-discovery-specialist"
+  model_type: "chat-completion"
+  
+# Training Parameters
+training:
+  learning_rate: 5e-6
+  batch_size: 8
+  num_epochs: 3
+  warmup_steps: 100
+  weight_decay: 0.01
+  gradient_accumulation_steps: 4
+  
+  # Early stopping
+  early_stopping:
+    enabled: true
+    patience: 5
+    min_delta: 0.001
+    
+  # Learning rate scheduling  
+  lr_scheduler:
+    type: "cosine"
+    warmup_ratio: 0.1
+
+# Data Configuration
+data:
+  train_file: "training/datasets/train.jsonl"
+  validation_file: "training/datasets/validation.jsonl"
+  test_file: "training/datasets/test.jsonl"
+  
+  # Data preprocessing
+  max_input_length: 2048
+  max_output_length: 1024
+  truncation_strategy: "longest_first"
+  
+  # Data augmentation
+  augmentation:
+    enabled: true
+    techniques:
+      - "paraphrase_input"
+      - "shuffle_tool_order"
+      - "add_noise"
+    probability: 0.3
+
+# Training Objectives
+objectives:
+  primary: "tool_sequence_accuracy"
+  secondary:
+    - "task_completion_rate"
+    - "response_efficiency" 
+    - "error_recovery_ability"
+  
+  # Weighted loss components
+  loss_weights:
+    tool_prediction: 0.4
+    sequence_completion: 0.3
+    response_quality: 0.2
+    efficiency_score: 0.1
+
+# Evaluation Metrics
+evaluation:
+  metrics:
+    - "tool_accuracy"          # Correct tool selection rate
+    - "sequence_completion"    # Full task completion rate
+    - "response_conciseness"   # Token efficiency score
+    - "error_recovery"         # Error handling success rate
+    - "page_coverage"          # Screenshot count achievement
+    
+  # Benchmarking
+  benchmark_tasks:
+    - "34_page_discovery"
+    - "menu_navigation"
+    - "error_handling"
+    - "rate_limit_recovery"
+
+# Model Architecture
+architecture:
+  # Custom attention patterns for tool sequences
+  attention:
+    tool_sequence_attention: true
+    hierarchical_attention: true
+    
+  # Specialized layers
+  custom_layers:
+    tool_prediction_head: true
+    sequence_tracker: true
+    efficiency_optimizer: true
+
+# Regularization
+regularization:
+  dropout: 0.1
+  attention_dropout: 0.1
+  
+  # Custom regularization for CrewAI
+  tool_consistency_loss: 0.05
+  sequence_coherence_loss: 0.03
+
+# Hardware Configuration  
+hardware:
+  device: "cuda"  # or "cpu" for CPU training
+  mixed_precision: true
+  gradient_checkpointing: true
+  dataloader_workers: 4
+
+# Monitoring and Logging
+monitoring:
+  wandb:
+    enabled: true
+    project: "crewai-training"
+    entity: "testing-crew"
+    
+  tensorboard:
+    enabled: true
+    log_dir: "training/logs"
+    
+  checkpoint:
+    save_every: 100
+    keep_best: 3
+    metric: "tool_accuracy"
+
+# Deployment
+deployment:
+  output_dir: "training/models/fine_tuned"
+  model_format: "huggingface"
+  
+  # Integration with CrewAI
+  crewai_integration:
+    export_config: true
+    test_deployment: true
+    benchmark_comparison: true

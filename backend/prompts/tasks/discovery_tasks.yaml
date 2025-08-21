@@ -1,0 +1,637 @@
+discover_application:
+  title: "Complete All 34+ Browser Actions - Simplified Execution"
+  content: |
+    🚨 EXECUTE ALL BROWSER ACTIONS BELOW - DO NOT STOP EARLY 🚨
+    
+    RULE: Execute every single browser tool listed below in exact order.
+    RULE: Use minimal responses between tools ("Done", "Next", "✓").
+    RULE: Save progress using File Writer Tool after every 5 screenshots.
+    
+    BROWSER SEQUENCE (Execute all 34+ tools):
+    
+    # Navigate and take homepage screenshot
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 10
+    browser_take_screenshot: p1.png
+    
+    # Administration menu exploration (6 pages)
+    browser_wait_for: 5
+    browser_click: Administration
+    browser_click: Manage Users
+    browser_take_screenshot: p2.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Administration
+    browser_click: Clear Cache  
+    browser_take_screenshot: p3.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Administration
+    browser_click: User Access Report
+    browser_take_screenshot: p4.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Administration
+    browser_click: Workflow History Report
+    browser_take_screenshot: p5.png
+    File Writer Tool: discovery_summary.json
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Administration
+    browser_click: User Role Action Report
+    browser_take_screenshot: p6.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Administration
+    browser_click: File Vault
+    browser_take_screenshot: p7.png
+    
+    # Master Data Setup (4 pages)  
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Master Data Setup
+    browser_click: Business Units
+    browser_take_screenshot: p8.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Master Data Setup
+    browser_click: Departments
+    browser_take_screenshot: p9.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Master Data Setup
+    browser_click: Master Entity List
+    browser_take_screenshot: p10.png
+    File Writer Tool: discovery_summary.json
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Master Data Setup
+    browser_click: Chart of Accounts
+    browser_take_screenshot: p11.png
+    
+    # Projects menu (6 pages)
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Projects
+    browser_click: Scoping
+    browser_take_screenshot: p12.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Projects
+    browser_click: Workplans
+    browser_take_screenshot: p13.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Projects
+    browser_click: Report Structure Setup
+    browser_take_screenshot: p14.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Projects
+    browser_click: Content Creation
+    browser_take_screenshot: p15.png
+    File Writer Tool: discovery_summary.json
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Projects
+    browser_click: Data Collection
+    browser_take_screenshot: p16.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Projects
+    browser_click: Report Generation
+    browser_take_screenshot: p17.png
+    
+    # Other navigation (17+ more pages to reach 34+)
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Dashboard
+    browser_take_screenshot: p18.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Settings
+    browser_take_screenshot: p19.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Scoping
+    browser_take_screenshot: p20.png
+    File Writer Tool: discovery_summary.json
+    
+    # Continue exploring until p34+ reached
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Workplans
+    browser_take_screenshot: p21.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Content Creation
+    browser_take_screenshot: p22.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Data Collection
+    browser_take_screenshot: p23.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Report Generation
+    browser_take_screenshot: p24.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Administration
+    browser_take_screenshot: p25.png
+    File Writer Tool: discovery_summary.json
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Master Data Setup
+    browser_take_screenshot: p26.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Projects
+    browser_take_screenshot: p27.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Dashboard
+    browser_take_screenshot: p28.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Settings
+    browser_take_screenshot: p29.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Scoping
+    browser_take_screenshot: p30.png
+    File Writer Tool: discovery_summary.json
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Workplans
+    browser_take_screenshot: p31.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Content Creation
+    browser_take_screenshot: p32.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Data Collection
+    browser_take_screenshot: p33.png
+    browser_navigate: {BASE_URL}
+    browser_wait_for: 5
+    browser_click: Report Generation
+    browser_take_screenshot: p34.png
+    
+    File Writer Tool: discovery_summary.json (FINAL SAVE)
+    
+    COMPLETION: Must execute all 34+ browser tools above before finishing task.
+
+explore_application:
+  title: "Application Exploration Task"
+  content: |
+    Perform comprehensive analysis of each discovered page using parallel processing and intelligent prioritization.
+    Focus on high-value pages first, then systematically explore all discovered navigation paths.
+
+    ## Phase 1: Page Prioritization & Planning
+    1. **Priority Classification**: Categorize pages by business importance (Critical, High, Medium, Low)
+    2. **Exploration Strategy**: Plan efficient traversal path to minimize redundant navigation
+    3. **Resource Allocation**: Estimate time and resources needed per page category
+    4. **Parallel Processing**: Identify pages that can be explored concurrently
+
+    ## Phase 2: Systematic Page Analysis
+    1. **Navigation & Loading**: 
+       - Navigate to each page using discovered menu paths
+       - Wait for complete page load (DOM ready + AJAX completion)
+       - Handle loading states, spinners, and dynamic content
+    2. **Content Extraction**:
+       - Capture full HTML snapshot with timestamps
+       - Take high-resolution screenshots (both viewport and full-page)
+       - Extract text content and metadata
+    3. **Element Discovery**:
+       - Identify all interactive elements using multiple selection strategies
+       - Categorize by type: buttons, links, forms, grids, tabs, modals
+       - Extract element attributes, labels, and accessibility info
+    4. **Safe Action Execution**:
+       - Execute non-destructive actions (View, Details, Search, Filter)
+       - Handle modal dialogs and popup windows
+       - Recursively analyze dynamically loaded content
+       - Maintain navigation breadcrumb trail
+
+    ## Phase 3: Deep Interaction Analysis
+    1. **Form Analysis**: Identify form fields, validation rules, and submission endpoints
+    2. **Grid Exploration**: Analyze data tables, pagination, sorting, and filtering
+    3. **Tab Navigation**: Explore tab panels and accordion sections
+    4. **Modal Windows**: Trigger and analyze popup dialogs and overlays
+    5. **Workflow Mapping**: Identify multi-step processes and business workflows
+
+    ## Phase 4: Error Detection & Edge Cases
+    1. **Error Scenarios**: Test error conditions, invalid inputs, and permission boundaries
+    2. **Performance Issues**: Log slow-loading pages and timeout errors
+    3. **Accessibility Testing**: Check for missing alt text, ARIA labels, and keyboard navigation
+    4. **Browser Compatibility**: Note any browser-specific issues or warnings
+
+    ## Optimization Strategies:
+    - **Parallel Execution**: Process independent pages simultaneously
+    - **Smart Caching**: Reuse authentication sessions and common components
+    - **Progressive Enhancement**: Start with basic functionality, then explore advanced features
+    - **Early Termination**: Skip duplicate or identical pages
+    - **Resource Management**: Monitor memory usage and browser performance
+
+    ## Output JSON Schema:
+    {
+      "exploration_metadata": {
+        "timestamp": "2025-08-20T17:56:45Z",
+        "total_pages_explored": 127,
+        "exploration_duration_minutes": 15.3,
+        "success_rate_percentage": 94.5,
+        "parallel_threads_used": 3
+      },
+      "pages": [
+        {
+          "page_id": "uuid-12345",
+          "name": "User Management",
+          "url": "/admin/users",
+          "navigation_path": "Administration → Manage Users",
+          "priority": "Critical",
+          "business_purpose": "Manage user accounts, roles, and permissions",
+          "page_type": "CRUD_Interface",
+          "load_time_ms": 1250,
+          "html_snapshot": {
+            "path": "html/admin_users.html",
+            "size_bytes": 45231,
+            "dom_elements": 892
+          },
+          "screenshots": {
+            "viewport": "screenshots/admin_users_viewport.png",
+            "fullpage": "screenshots/admin_users_full.png"
+          },
+          "actionable_elements": {
+            "buttons": [
+              {
+                "text": "Add User",
+                "selector": "button[data-action='add-user']",
+                "type": "primary",
+                "function": "modal_trigger",
+                "tested": true,
+                "result": "Opens user creation modal"
+              }
+            ],
+            "links": [
+              {
+                "text": "View Details",
+                "href": "/admin/users/123/details",
+                "selector": "a.user-details",
+                "function": "navigation",
+                "tested": true
+              }
+            ],
+            "forms": [
+              {
+                "name": "user_search",
+                "method": "GET",
+                "fields": ["search_term", "role_filter"],
+                "validation_rules": {"search_term": "min_length:2"},
+                "tested": true
+              }
+            ],
+            "grids": [
+              {
+                "name": "users_table",
+                "columns": ["Name", "Email", "Role", "Status", "Actions"],
+                "pagination": true,
+                "sortable": true,
+                "filterable": true,
+                "row_count": 25
+              }
+            ]
+          },
+          "child_pages": [
+            {
+              "name": "User Details",
+              "url": "/admin/users/123/details",
+              "trigger": "View Details link",
+              "explored": true
+            }
+          ],
+          "workflows": [
+            {
+              "name": "Create New User",
+              "steps": ["Click Add User", "Fill Form", "Submit", "Confirm"],
+              "estimated_duration": "2-3 minutes"
+            }
+          ],
+          "performance": {
+            "page_load_time": 1250,
+            "first_contentful_paint": 450,
+            "largest_contentful_paint": 890,
+            "network_requests": 23
+          },
+          "errors": [
+            {
+              "type": "console_error",
+              "message": "TypeError: Cannot read property 'id' of undefined",
+              "source": "user-management.js:45",
+              "severity": "warning"
+            }
+          ],
+          "accessibility": {
+            "aria_labels_missing": 2,
+            "alt_text_missing": 1,
+            "keyboard_navigable": true,
+            "contrast_ratio": "AA"
+          }
+        }
+      ],
+      "exploration_summary": {
+        "pages_by_category": {
+          "Critical": 15,
+          "High": 32,
+          "Medium": 58,
+          "Low": 22
+        },
+        "unexplored_pages": [
+          {
+            "url": "/advanced/settings",
+            "reason": "Authentication required - admin only",
+            "menu_path": "Settings → Advanced Configuration"
+          }
+        ],
+        "common_components": [
+          {
+            "type": "header_navigation",
+            "found_on_pages": 127,
+            "variations": 2
+          }
+        ]
+      }
+    }
+
+build_site_map:
+  title: "Site Map Building Task"
+  content: |
+    Synthesize discovery and exploration data into a comprehensive, actionable site map with validation,
+    analytics, and testing recommendations. Provide strategic insights for test planning and coverage analysis.
+
+    ## Phase 1: Data Consolidation & Validation
+    1. **Data Integration**: Merge discovery and exploration results with conflict resolution
+    2. **Completeness Check**: Validate data integrity and identify missing information
+    3. **Cross-Reference Validation**: Compare against known_menu_inventory.yaml for gaps
+    4. **Quality Assessment**: Evaluate data quality scores and confidence levels
+    5. **Duplicate Detection**: Identify and merge duplicate pages and components
+
+    ## Phase 2: Hierarchical Structure Building
+    1. **Navigation Hierarchy**: Build complete navigation tree with parent-child relationships
+    2. **Page Categorization**: Group pages by business domain, user role, and functionality
+    3. **Component Mapping**: Identify shared UI components and reusable elements
+    4. **Dependency Analysis**: Map page-to-page dependencies and workflow connections
+    5. **Access Control Mapping**: Document permission levels and role-based access
+
+    ## Phase 3: Business Intelligence & Analytics
+    1. **User Journey Mapping**: Reconstruct common user workflows and business processes
+    2. **Feature Coverage**: Calculate functional coverage across different user roles
+    3. **Complexity Analysis**: Assess page complexity for testing effort estimation
+    4. **Risk Assessment**: Identify high-risk areas requiring intensive testing
+    5. **Performance Insights**: Highlight slow pages and performance bottlenecks
+
+    ## Phase 4: Test Strategy Recommendations
+    1. **Test Prioritization**: Rank pages/features by testing importance and business impact
+    2. **Test Type Recommendations**: Suggest appropriate test types (unit, integration, e2e)
+    3. **Automation Candidates**: Identify pages suitable for automated testing
+    4. **Edge Case Scenarios**: Document potential edge cases and error conditions
+    5. **Regression Test Sets**: Define core regression test scenarios
+
+    ## Quality Gates:
+    - **Completeness**: Ensure 95%+ of discovered pages are analyzed
+    - **Accuracy**: Validate all URLs are accessible and functional
+    - **Consistency**: Standardize naming conventions and categorizations
+    - **Traceability**: Maintain links between raw data and processed insights
+
+    ## Output JSON Schema:
+    {
+      "site_map_metadata": {
+        "generation_timestamp": "2025-08-20T18:15:30Z",
+        "version": "1.0",
+        "base_url": "{BASE_URL}",
+        "total_pages": 127,
+        "total_components": 45,
+        "coverage_score": 96.2,
+        "quality_score": 94.8,
+        "data_sources": ["discovery_results", "exploration_results", "known_menu_inventory"]
+      },
+      "site_map": {
+        "navigation_structure": {
+          "Administration": {
+            "metadata": {
+              "business_domain": "system_administration",
+              "user_roles": ["admin", "super_admin"],
+              "complexity_score": 8.5
+            },
+            "pages": {
+              "Manage Users": {
+                "url": "/admin/users",
+                "priority": "Critical",
+                "test_complexity": "High",
+                "automation_feasibility": "High"
+              },
+              "Clear Cache": {
+                "url": "/admin/cache",
+                "priority": "Medium",
+                "test_complexity": "Low",
+                "automation_feasibility": "High"
+              }
+            }
+          },
+          "Projects": {
+            "metadata": {
+              "business_domain": "project_management",
+              "user_roles": ["project_manager", "analyst"],
+              "complexity_score": 7.2
+            },
+            "pages": {
+              "Scoping": {
+                "url": "/projects/scoping",
+                "priority": "High",
+                "test_complexity": "Medium",
+                "automation_feasibility": "Medium"
+              }
+            }
+          }
+        },
+        "page_inventory": [
+          {
+            "page_id": "uuid-12345",
+            "name": "User Management",
+            "url": "/admin/users",
+            "category": "Administration",
+            "subcategory": "User Management",
+            "business_purpose": "Manage user accounts, roles, and permissions",
+            "user_roles": ["admin", "super_admin"],
+            "page_type": "CRUD_Interface",
+            "complexity_metrics": {
+              "ui_elements_count": 45,
+              "form_fields": 12,
+              "interactive_elements": 28,
+              "business_rules": 8
+            },
+            "testing_metadata": {
+              "priority": "Critical",
+              "estimated_test_hours": 8,
+              "automation_feasibility": "High",
+              "risk_level": "High"
+            },
+            "performance_baseline": {
+              "load_time_ms": 1250,
+              "performance_score": 85
+            }
+          }
+        ],
+        "ui_component_catalog": {
+          "shared_components": [
+            {
+              "name": "DataGrid",
+              "usage_count": 23,
+              "pages_used_on": ["/admin/users", "/projects/list"],
+              "test_coverage": "Partial",
+              "automation_status": "Automated"
+            }
+          ],
+          "page_specific_elements": {
+            "/admin/users": {
+              "buttons": [
+                {
+                  "id": "add-user-btn",
+                  "text": "Add User",
+                  "function": "modal_trigger",
+                  "test_scenarios": ["happy_path", "validation_errors"],
+                  "automation_status": "Automated"
+                }
+              ],
+              "forms": [
+                {
+                  "id": "user-search-form",
+                  "complexity": "Low",
+                  "validation_rules": 3,
+                  "test_scenarios": ["valid_search", "empty_search", "special_chars"]
+                }
+              ]
+            }
+          }
+        },
+        "user_journeys": [
+          {
+            "journey_id": "user-onboarding",
+            "name": "New User Creation Workflow",
+            "business_value": "High",
+            "frequency": "Daily",
+            "user_roles": ["admin"],
+            "steps": [
+              {
+                "step": 1,
+                "action": "Navigate to User Management",
+                "page": "/admin/users",
+                "expected_outcome": "User list displays"
+              },
+              {
+                "step": 2,
+                "action": "Click Add User button",
+                "element": "#add-user-btn",
+                "expected_outcome": "User creation modal opens"
+              }
+            ],
+            "testing_priority": "Critical",
+            "automation_candidate": true,
+            "estimated_duration": "3-5 minutes"
+          }
+        ],
+        "business_processes": [
+          {
+            "process_name": "Project Setup",
+            "pages_involved": ["/projects/scoping", "/projects/entities"],
+            "business_impact": "High",
+            "complexity": "Medium",
+            "test_coverage_required": 90
+          }
+        ],
+        "action_result_mappings": {
+          "user_management": {
+            "Add User Button": {
+              "expected_result": "Opens user creation modal",
+              "error_scenarios": ["Permission denied", "Session timeout"],
+              "test_data_required": ["valid_user_data", "invalid_email", "duplicate_username"]
+            },
+            "Search Form": {
+              "expected_result": "Filters user list based on criteria",
+              "error_scenarios": ["No results found", "Server error"],
+              "performance_requirements": "Results within 2 seconds"
+            }
+          }
+        },
+        "quality_metrics": {
+          "pages_analyzed": 127,
+          "pages_accessible": 121,
+          "permission_errors": 4,
+          "broken_links": 2,
+          "performance_issues": 8,
+          "accessibility_violations": 12
+        },
+        "gaps_and_issues": {
+          "missing_pages": [
+            {
+              "expected_page": "User Access Report",
+              "menu_location": "Administration",
+              "impact": "Medium",
+              "reason": "Menu item exists but page not found"
+            }
+          ],
+          "unexplored_areas": [
+            {
+              "area": "Advanced Settings",
+              "reason": "Requires higher permission level",
+              "impact": "Low",
+              "recommendation": "Test with admin+ privileges"
+            }
+          ],
+          "technical_issues": [
+            {
+              "page": "/admin/cache",
+              "issue": "JavaScript console errors",
+              "severity": "Medium",
+              "impact_on_testing": "May affect automated scripts"
+            }
+          ]
+        },
+        "testing_recommendations": {
+          "critical_test_areas": [
+            {
+              "area": "User Management",
+              "justification": "Core administrative function with high business impact",
+              "recommended_test_types": ["functional", "security", "usability"],
+              "automation_priority": "High"
+            }
+          ],
+          "regression_test_suite": [
+            "User login/logout workflow",
+            "Project creation process",
+            "Data export functionality"
+          ],
+          "performance_test_candidates": [
+            "/admin/users (large dataset handling)",
+            "/reports/generation (report processing)"
+          ],
+          "security_test_focus": [
+            "Role-based access control",
+            "Data export permissions",
+            "Session management"
+          ]
+        }
+      }
+    }
+
+    MANDATORY TASK COMPLETION:
+      - Execute browser tools for EVERY page in the application (34+ pages minimum)
+      - Save discovery_summary.json using File Writer Tool after every 5 browser_take_screenshot calls
+      - Write incremental discovery_summary.json to backend/fs_files/run_*/discovery_summary.json
+      - Include ALL discovered pages, navigation paths, and screenshot references
+      - Use File Writer Tool with content being the complete JSON discovery output
+      - Task CANNOT finish until discovery_summary.json contains all discovered pages
+      
+      INCREMENTAL SAVE PATTERN:
+      After every 5th screenshot (p5.png, p10.png, p15.png, etc.), use File Writer Tool:
+      filename: discovery_summary.json
+      directory: backend/fs_files/run_20250820_143000/
+      content: {complete JSON discovery output with all pages discovered so far}

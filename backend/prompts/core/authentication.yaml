@@ -1,0 +1,35 @@
+# Authentication and Login Procedures
+
+login_sequence:
+  title: "Standard Login Sequence"
+  content: |
+    MANDATORY AUTHENTICATION SEQUENCE:
+    1. **Navigate to Base URL**: {BASE_URL} with 30-second timeout
+    2. **Wait for Application Load**: Ensure loader disappears and page is interactive
+    3. **Login Form Interaction**: 
+       - Locate login elements (a.login-button, button:has-text("Login"))
+       - Input credentials: USERNAME={USERNAME}, PASSWORD={PASSWORD}
+       - Click login button when visible/enabled
+    4. **Authentication Verification**:
+       - Wait for navigation/menu appearance (timeout: 60s)
+       - Confirm hamburger menu or sidebar navigation is visible
+       - Verify authentication success before beginning exploration
+
+session_management:
+  title: "Session Management"
+  content: |
+    SESSION MANAGEMENT STRATEGY:
+    - **Session Preservation**: Maintain authenticated state throughout exploration
+    - **Timeout Handling**: Monitor for session timeout warnings and handle appropriately
+    - **Re-authentication**: Implement automatic re-login if session expires
+    - **State Consistency**: Ensure application state remains consistent during exploration
+
+authentication_verification:
+  title: "Authentication Verification"
+  content: |
+    AUTHENTICATION SUCCESS INDICATORS:
+    - ✅ Login form disappears or is replaced with user interface
+    - ✅ Navigation menu (hamburger menu, sidebar) becomes visible
+    - ✅ User-specific content or dashboard appears
+    - ✅ No authentication error messages or redirects to login
+    - ✅ Protected navigation elements are accessible and interactive

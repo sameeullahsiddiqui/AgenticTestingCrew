@@ -1,0 +1,45 @@
+known_menu_inventory:
+  Administration:
+    - Manage Users
+    - Clear Cache
+    - User Access Report
+    - Workflow History Report
+    - User Role Action Report
+    - File Vault
+  Dashboard: []
+  Settings: []
+  Master Data Setup:
+    - Business Units
+    - Departments
+    - Master Entity List
+    - Jurisdiction Region Mappings
+    - Chart of Accounts
+    - Transaction Types
+    - Benchmarking Study Types
+    - PLI Definitions
+    - Export Master Data Setup Data
+    - Data Import
+  Projects:
+    - Scoping
+    - Project Entities
+    - Local File Scoping
+    - Transaction Type Scoping
+    - Benchmarking Scoping
+  Workplans:
+    - Local File Workplan
+    - Transaction Workplan
+    - Benchmarking Workplan
+    - Users Assignment
+  Report Structure Setup:
+    - Document Templates
+    - Report Structures
+    - Components
+    - Free Placeholders
+  Content Creation:
+    - Benchmarking Study Modules
+    - Transaction Modules
+  Data Collection:
+    - Local Files
+    - Group Data
+  Report Generation:
+    - Local Files

@@ -1,0 +1,157 @@
+# Planning Task Components
+
+generate_test_plan:
+  title: "Test Plan Generation Task"
+  content: |
+    Analyze the site map and discovery results to create a structured, comprehensive test plan.
+    Transform discovered application structure into executable test scenarios covering all critical 
+    user flows, business processes, and edge cases.
+    
+    ## TEST PLANNING METHODOLOGY
+    
+    ### PHASE 1: DISCOVERY ANALYSIS AND PRIORITIZATION
+    
+    **Site Map Analysis**:
+    - Parse the discovery results from {SAMPLE_DIR}/site_map.json
+    - Analyze navigation structure and page hierarchy
+    - Identify business-critical paths and high-risk areas
+    - Map user personas to discovered functionality
+    
+    **Risk Assessment Framework**:
+    - **High Risk**: Login, data modification, financial transactions, integrations
+    - **Medium Risk**: Data viewing, reporting, configuration changes
+    - **Low Risk**: Help pages, informational content, basic navigation
+    
+    **Priority Classification**:
+    - **P0**: Core business functions, login/logout, critical user journeys
+    - **P1**: Major features, data entry forms, important workflows
+    - **P2**: Secondary features, edge cases, administrative functions
+    - **P3**: Nice-to-have features, help systems, non-critical paths
+    
+    ### PHASE 2: COMPREHENSIVE TEST SCENARIO DESIGN
+    
+    **Positive Test Scenarios**:
+    - Happy path workflows from menu navigation to task completion
+    - Standard user interactions with expected system behavior
+    - Valid data entry and form submissions
+    - Successful authentication and session management
+    
+    **Negative Test Scenarios**:
+    - Invalid input handling and error message validation
+    - Boundary condition testing and edge cases
+    - Authentication failures and session timeout scenarios
+    - Network interruption and system error recovery
+    
+    **Integration Test Scenarios**:
+    - End-to-end business workflows spanning multiple pages/modules
+    - Data consistency across different application areas
+    - Cross-browser compatibility scenarios
+    - Performance validation for critical operations
+    
+    ### PHASE 3: DETAILED TEST CASE SPECIFICATION
+    
+    For each identified test scenario, create detailed test cases including:
+    - **Test Case ID**: Unique identifier following naming convention (TC_001, TC_002, etc.)
+    - **Title**: Clear, descriptive test case name
+    - **Description**: Purpose and scope of the test
+    - **Preconditions**: System state and data requirements before execution
+    - **Test Steps**: Numbered, detailed steps with expected results
+    - **Expected Results**: Clear success criteria and validation points
+    - **Priority**: P0/P1/P2/P3 classification based on risk assessment
+    - **Category**: Functional, UI, Integration, Performance, Security
+    
+    ### BLAZOR-SPECIFIC TEST SCENARIOS
+    
+    **Navigation Testing**:
+    - Left sidebar menu expansion and collapse
+    - Menu hierarchy navigation and breadcrumb validation
+    - Page-to-page navigation consistency
+    - Back/forward browser navigation handling
+    
+    **Component Interaction Testing**:
+    - Tab system functionality and content switching
+    - Data grid operations (sorting, filtering, pagination)
+    - Modal dialog interactions and data flow
+    - Form validation and submission handling
+    
+    **Dynamic Content Testing**:
+    - Blazor component loading and initialization
+    - Async data loading and progress indicators
+    - State management across component interactions
+    - Error handling for failed data loads
+    
+    ## TEST PLAN OUTPUT FORMAT
+    
+    The test plan should cover:
+    - **Login and Authentication Flows**: Complete authentication testing
+    - **Navigation and Menu Testing**: All discovered navigation paths
+    - **Form Interaction Testing**: All identified forms and input validation
+    - **Data Grid Operations**: CRUD operations and data manipulation
+    - **Business Workflow Testing**: End-to-end process validation
+    - **Error Handling Testing**: Edge cases and error scenarios
+    - **Performance Testing**: Critical operation timing validation
+    - **Cross-Browser Testing**: Compatibility across target browsers
+    
+    Each test case should be formatted as:
+    
+    ```
+    Test Case ID: TC_XXX
+    Title: [Descriptive test case name]
+    Description: [Purpose and scope]
+    Priority: [P0/P1/P2/P3]
+    Category: [Functional/UI/Integration/Performance/Security]
+    
+    Preconditions:
+    - [System state requirement 1]
+    - [System state requirement 2]
+    
+    Test Steps:
+    1. [Detailed step with expected result]
+    2. [Detailed step with expected result]
+    3. [Detailed step with expected result]
+    
+    Expected Results:
+    - [Overall success criteria]
+    - [Specific validation points]
+    
+    Test Data:
+    - [Required test data sets]
+    ```
+
+coverage_analysis:
+  title: "Test Coverage Analysis Task"
+  content: |
+    ## COMPREHENSIVE COVERAGE STRATEGY
+    
+    ### Functional Coverage Requirements
+    - **Menu Coverage**: Every discovered menu item has associated test cases
+    - **Page Coverage**: Each page type (grid, form, dashboard) has representative tests  
+    - **Action Coverage**: All actionable elements have positive and negative test scenarios
+    - **Flow Coverage**: End-to-end business processes are fully tested
+    - **Component Coverage**: All Blazor components have interaction tests
+    
+    ### Data Coverage Strategy
+    - **Valid Data Sets**: Representative data for successful operations
+    - **Invalid Data Sets**: Boundary conditions, format violations, missing data
+    - **Edge Cases**: Maximum/minimum values, special characters, null conditions
+    - **Volume Testing**: Large data sets, pagination, performance impact
+    
+    ### Browser and Environment Coverage
+    - **Primary Browsers**: Chrome, Firefox, Safari, Edge compatibility
+    - **Mobile Responsiveness**: Tablet and mobile device testing
+    - **Accessibility**: Screen reader compatibility, keyboard navigation
+    - **Performance**: Load times, responsiveness, resource utilization
+    
+    ### Integration Coverage
+    - **API Integration**: External service communication and data exchange
+    - **Database Integration**: Data persistence and retrieval validation
+    - **Authentication Integration**: SSO, LDAP, external identity providers
+    - **Third-party Components**: External libraries, widgets, embedded content
+    
+    ## COVERAGE METRICS AND TARGETS
+    
+    - **Functional Coverage Target**: >95% of discovered features tested
+    - **Page Coverage Target**: >90% of discovered pages included in test scenarios
+    - **Navigation Coverage Target**: 100% of menu items and navigation paths tested
+    - **Component Coverage Target**: >90% of interactive elements tested
+    - **Business Process Coverage Target**: 100% of critical workflows tested

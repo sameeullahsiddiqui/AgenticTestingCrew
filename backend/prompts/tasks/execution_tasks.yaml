@@ -1,0 +1,325 @@
+# Execution Task Components
+
+execute_tests:
+  title: "Test Execution Task"
+  content: |
+    Execute all test cases defined in the test plan using the MCP Playwright server.
+    Ensure browser runs with headless set to {HEADLESS}. Provide comprehensive execution
+    with detailed logging, evidence capture, and robust error handling.
+    
+    ## COMPREHENSIVE TEST EXECUTION METHODOLOGY
+    
+    ### EXECUTION PREPARATION PHASE
+    
+    **Environment Verification**:
+    - Verify MCP Playwright server connectivity and configuration
+    - Validate target application availability at {BASE_URL}
+    - Confirm authentication credentials and user account access
+    - Check browser configuration and headless mode setting ({HEADLESS})
+    - Ensure output directories exist: {SAMPLE_DIR}/screenshots, {SAMPLE_DIR}/logs
+    
+    **Test Suite Preparation**:
+    - Parse test plan and identify all test cases for execution
+    - Validate test script availability and syntax
+    - Prepare test data sets and user credentials
+    - Initialize logging and evidence capture systems
+    - Set up execution monitoring and progress tracking
+    
+    **Execution Sequencing Strategy**:
+    - Execute tests in priority order: P0 → P1 → P2 → P3
+    - Group related tests for efficient browser session usage
+    - Implement proper test isolation and cleanup procedures
+    - Handle test dependencies and prerequisite validation
+    
+    ### SYSTEMATIC TEST EXECUTION PROCESS
+    
+    **For Each Test Case Execute**:
+    
+    1. **Pre-Execution Setup**:
+       - Initialize browser session with appropriate configuration
+       - Navigate to application base URL and verify availability
+       - Perform authentication using provided credentials
+       - Verify application ready state before test execution
+       - Capture baseline screenshots for comparison
+    
+    2. **Step-by-Step Test Execution**:
+       - Execute each test step as defined in test plan
+       - Wait for appropriate page loads and component initialization
+       - Perform user interactions (clicks, form filling, navigation)
+       - Capture intermediate state and progress evidence
+       - Validate expected results at each step
+    
+    3. **Validation and Verification**:
+       - Verify expected results for each test step
+       - Validate page content, UI elements, and application state
+       - Check for error conditions and unexpected behavior
+       - Compare actual vs. expected outcomes with detailed logging
+       - Record any deviations from expected behavior
+    
+    4. **Evidence Capture and Documentation**:
+       - Take screenshots at key validation points
+       - Capture console logs and network activity
+       - Record execution timing and performance metrics
+       - Document any deviations from expected behavior
+       - Store all evidence in organized directory structure
+    
+    5. **Test Result Classification**:
+       - Mark test as PASSED if all steps completed successfully
+       - Mark test as FAILED if any step failed or assertion failed
+       - Mark test as SKIPPED if prerequisites were not met
+       - Mark test as ERROR if execution could not complete due to system issues
+    
+    ### EXECUTION PATTERNS AND BEST PRACTICES
+    
+    **Browser Session Management**:
+    ```javascript
+    async function executeTestWithSession(testCase) {
+        const browser = await chromium.launch({ 
+            headless: {HEADLESS},
+            args: ['--no-sandbox', '--disable-dev-shm-usage']
+        });
+        
+        const context = await browser.newContext({
+            viewport: { width: 1920, height: 1080 },
+            recordVideo: { 
+                dir: '{SAMPLE_DIR}/videos',
+                size: { width: 1920, height: 1080 }
+            }
+        });
+        
+        const page = await context.newPage();
+        
+        try {
+            const result = await executeTestSteps(page, testCase);
+            return result;
+        } catch (error) {
+            await captureFailureEvidence(page, testCase.id, error);
+            throw error;
+        } finally {
+            await browser.close();
+        }
+    }
+    ```
+    
+    **Execution Monitoring and Progress Tracking**:
+    ```javascript
+    class ExecutionMonitor {
+        constructor() {
+            this.startTime = new Date();
+            this.completedTests = 0;
+            this.totalTests = 0;
+            this.passedTests = 0;
+            this.failedTests = 0;
+            this.skippedTests = 0;
+            this.errors = [];
+        }
+        
+        updateProgress(testResult) {
+            this.completedTests++;
+            
+            switch(testResult.status) {
+                case 'PASSED':
+                    this.passedTests++;
+                    break;
+                case 'FAILED':
+                    this.failedTests++;
+                    this.errors.push(testResult);
+                    break;
+                case 'SKIPPED':
+                    this.skippedTests++;
+                    break;
+                case 'ERROR':
+                    this.failedTests++;
+                    this.errors.push(testResult);
+                    break;
+            }
+            
+            this.logProgress();
+        }
+        
+        logProgress() {
+            const progress = (this.completedTests / this.totalTests * 100).toFixed(1);
+            console.log(`\\n=== EXECUTION PROGRESS ===`);
+            console.log(`Progress: ${progress}% (${this.completedTests}/${this.totalTests})`);
+            console.log(`✅ Passed: ${this.passedTests}`);
+            console.log(`❌ Failed: ${this.failedTests}`);
+            console.log(`⏭️ Skipped: ${this.skippedTests}`);
+            console.log(`⏱️ Elapsed: ${Math.round((new Date() - this.startTime) / 1000)}s`);
+        }
+    }
+    ```
+
+monitor_retry_execution:
+  title: "Monitor and Retry Execution Task"
+  content: |
+    Monitor the output of execute_tests and compare it with the test cases defined in generate_test_plan.
+    If any test cases are missing or not executed, devise an improved execution strategy and retry test execution.
+    Repeat this process up to three times to ensure comprehensive test coverage.
+    
+    ## EXECUTION MONITORING METHODOLOGY
+    
+    ### EXECUTION COMPLETENESS ANALYSIS
+    
+    **Test Case Coverage Verification**:
+    - Compare executed tests against complete test plan inventory
+    - Identify missing test cases and execution gaps
+    - Analyze patterns in unexecuted tests (priority, category, complexity)
+    - Determine root causes for execution failures or skips
+    
+    **Execution Quality Assessment**:
+    - Analyze test execution results for quality and consistency
+    - Identify flaky tests with inconsistent results
+    - Review error patterns and failure root causes
+    - Assess overall execution health and reliability
+    
+    **Gap Analysis and Remediation Planning**:
+    - Categorize missing tests by priority and impact
+    - Develop targeted execution strategies for missed test cases
+    - Plan resource allocation for retry attempts
+    - Set success criteria for retry completion
+    
+    ### RETRY EXECUTION STRATEGY
+    
+    **Attempt 1: Targeted Re-execution**:
+    - Focus on high-priority missed test cases (P0, P1)
+    - Address obvious environment or configuration issues
+    - Implement basic error handling improvements
+    - Execute missing tests with standard retry logic
+    
+    **Attempt 2: Enhanced Execution Strategy**:
+    - Implement advanced error recovery mechanisms
+    - Optimize test execution order and dependencies
+    - Enhance browser session management and stability
+    - Apply lessons learned from first attempt failures
+    
+    **Attempt 3: Comprehensive Final Attempt**:
+    - Apply all available optimization and recovery strategies
+    - Implement maximum retry counts and error tolerance
+    - Use alternative execution approaches where needed
+    - Document remaining gaps and provide recommendations
+    
+    ### MONITORING AND DECISION LOGIC
+    
+    **Success Criteria per Attempt**:
+    ```javascript
+    function evaluateExecutionCompleteness(attempt, results) {
+        const completeness = {
+            totalPlanned: results.totalTestCases,
+            executed: results.executedTestCases,
+            passed: results.passedTests,
+            failed: results.failedTests,
+            missing: results.totalTestCases - results.executedTestCases
+        };
+        
+        const executionRate = completeness.executed / completeness.totalPlanned;
+        const passRate = completeness.passed / completeness.executed;
+        
+        // Success criteria based on attempt number
+        const successThresholds = {
+            1: { execution: 0.85, pass: 0.80 },
+            2: { execution: 0.95, pass: 0.85 },
+            3: { execution: 0.90, pass: 0.75 }  // Lower pass rate acceptable on final attempt
+        };
+        
+        const threshold = successThresholds[attempt];
+        const success = executionRate >= threshold.execution && passRate >= threshold.pass;
+        
+        return {
+            success: success,
+            executionRate: executionRate,
+            passRate: passRate,
+            recommendation: success ? 'PROCEED' : (attempt < 3 ? 'RETRY' : 'MANUAL_REVIEW'),
+            details: completeness
+        };
+    }
+    ```
+    
+    **Retry Strategy Implementation**:
+    ```javascript
+    async function executeWithMonitoringAndRetry(testPlan, maxAttempts = 3) {
+        let attempt = 1;
+        let finalResults = null;
+        
+        while (attempt <= maxAttempts) {
+            console.log(`\\n=== EXECUTION ATTEMPT ${attempt}/${maxAttempts} ===`);
+            
+            try {
+                const results = await executeTests(testPlan, attempt);
+                const evaluation = evaluateExecutionCompleteness(attempt, results);
+                
+                if (evaluation.success || attempt === maxAttempts) {
+                    finalResults = {
+                        attempts: attempt,
+                        finalStatus: evaluation.success ? 'SUCCESS' : 'PARTIAL_SUCCESS',
+                        executionRate: evaluation.executionRate,
+                        passRate: evaluation.passRate,
+                        results: results,
+                        recommendation: evaluation.recommendation
+                    };
+                    break;
+                }
+                
+                // Prepare for retry
+                const retryStrategy = planRetryStrategy(evaluation, attempt);
+                await implementRetryStrategy(retryStrategy);
+                
+            } catch (error) {
+                console.error(`Execution attempt ${attempt} failed:`, error);
+                if (attempt === maxAttempts) {
+                    finalResults = {
+                        attempts: attempt,
+                        finalStatus: 'FAILED',
+                        error: error.message,
+                        recommendation: 'MANUAL_INTERVENTION_REQUIRED'
+                    };
+                    break;
+                }
+            }
+            
+            attempt++;
+        }
+        
+        return finalResults;
+    }
+    ```
+    
+    ### FINAL STATUS DETERMINATION
+    
+    **Success Scenarios**:
+    - **All Tests Executed**: 100% test execution with >90% pass rate
+    - **Substantial Coverage**: >95% test execution with >85% pass rate
+    - **Acceptable Coverage**: >90% test execution with >80% pass rate
+    
+    **Partial Success Scenarios**:
+    - **High Execution, Lower Pass Rate**: >90% execution but <80% pass rate
+    - **Good Execution, Missing Critical Tests**: >85% execution but P0 tests missing
+    - **Complete Execution, High Failure Rate**: 100% execution but <75% pass rate
+    
+    **Failure Scenarios**:
+    - **Low Execution Rate**: <90% test execution after all attempts
+    - **Critical Test Failures**: P0 priority tests consistently failing
+    - **System Instability**: Unable to maintain stable execution environment
+    
+    **Output Format**:
+    ```json
+    {
+        "attempts": 1-3,
+        "finalStatus": "SUCCESS|PARTIAL_SUCCESS|FAILED",
+        "executionSummary": {
+            "totalPlanned": 0,
+            "totalExecuted": 0,
+            "passRate": 0.0,
+            "executionRate": 0.0
+        },
+        "missingTests": [
+            {
+                "testId": "string",
+                "priority": "P0|P1|P2|P3",
+                "reason": "string"
+            }
+        ],
+        "criticalIssues": ["string"],
+        "recommendation": "PROCEED|MANUAL_REVIEW|INFRASTRUCTURE_FIX",
+        "message": "Execution summary and next steps"
+    }
+    ```

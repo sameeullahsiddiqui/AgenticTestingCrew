@@ -1,0 +1,317 @@
+# Reporting Task Components
+
+generate_test_report:
+  title: "Test Report Generation Task"
+  content: |
+    Analyze raw test execution results and generate a comprehensive Markdown test report.
+    Transform complex execution data into stakeholder-ready documentation that provides
+    clear insights into application quality, test coverage, and actionable recommendations.
+    
+    ## COMPREHENSIVE REPORTING METHODOLOGY
+    
+    ### REPORT STRUCTURE AND CONTENT
+    
+    **Executive Summary Section**:
+    - Overall test execution status and key quality metrics
+    - Business-critical findings and comprehensive risk assessment
+    - Go/No-Go recommendation with detailed supporting rationale
+    - High-level quality score and trend analysis comparison
+    - Stakeholder impact assessment and business implications
+    
+    **Detailed Test Results Section**:
+    - Complete test case execution breakdown by category and priority level
+    - Pass/fail statistics with historical trend analysis and patterns
+    - Error categorization with frequency analysis and root cause investigation
+    - Performance metrics analysis and execution efficiency assessment
+    - Coverage analysis across all tested application areas and components
+    
+    **Technical Analysis and Findings Section**:
+    - Comprehensive failure analysis with detailed root cause investigation
+    - Browser compatibility assessment and environment-specific issue analysis
+    - Infrastructure and tooling performance evaluation and recommendations
+    - Application architecture observations and technical debt identification
+    - Security and accessibility findings with compliance assessment
+    
+    **Evidence and Artifacts Section**:
+    - Organized screenshot galleries categorized by test scenario and outcome
+    - Comprehensive execution logs with searchable trace information
+    - Network activity analysis and performance profiling data
+    - Video recordings of critical test executions and failure scenarios
+    - Raw data exports and detailed technical appendices
+    
+    ### REPORT GENERATION PROCESS
+    
+    **Data Collection and Analysis**:
+    ```markdown
+    # Comprehensive Test Execution Report
+    
+    **Generated**: {TIMESTAMP}  
+    **Application**: {APPLICATION_NAME}  
+    **Test Environment**: {BASE_URL}  
+    **Execution Duration**: {EXECUTION_DURATION}  
+    **Report Version**: {REPORT_VERSION}
+    
+    ---
+    
+    ## 📊 Executive Summary
+    
+    ### 🎯 Overall Quality Assessment: {QUALITY_SCORE}/100
+    
+    | **Metric** | **Result** | **Target** | **Status** |
+    |------------|------------|------------|------------|
+    | **Overall Status** | {OVERALL_STATUS} | PASS | {STATUS_ICON} |
+    | **Test Execution Rate** | {EXECUTION_RATE}% | 95% | {EXEC_STATUS_ICON} |
+    | **Pass Rate** | {PASS_RATE}% | 90% | {PASS_STATUS_ICON} |
+    | **Critical Issues** | {CRITICAL_COUNT} | 0 | {CRITICAL_STATUS_ICON} |
+    | **Coverage Achieved** | {COVERAGE_PERCENTAGE}% | 90% | {COVERAGE_STATUS_ICON} |
+    | **Execution Time** | {EXECUTION_DURATION} | <2hrs | {TIME_STATUS_ICON} |
+    
+    ### 🚦 **Recommendation: {RECOMMENDATION}**
+    
+    {DETAILED_RECOMMENDATION_WITH_RATIONALE}
+    
+    ### 📈 **Key Quality Indicators**
+    - **Functional Quality**: {FUNCTIONAL_QUALITY_SCORE}/100
+    - **Performance Quality**: {PERFORMANCE_QUALITY_SCORE}/100  
+    - **Usability Quality**: {USABILITY_QUALITY_SCORE}/100
+    - **Reliability Quality**: {RELIABILITY_QUALITY_SCORE}/100
+    
+    ### 🔍 **Critical Findings Summary**
+    - **🚨 High Priority Issues**: {HIGH_PRIORITY_SUMMARY}
+    - **⚠️ Medium Priority Issues**: {MEDIUM_PRIORITY_SUMMARY}
+    - **ℹ️ Low Priority Issues**: {LOW_PRIORITY_SUMMARY}
+    
+    ---
+    
+    ## 📋 Detailed Test Results
+    
+    ### Test Execution Overview
+    - **Total Test Cases Planned**: {TOTAL_PLANNED}
+    - **Test Cases Executed**: {TOTAL_EXECUTED} ({EXECUTION_PERCENTAGE}%)
+    - **Test Cases Passed**: {TOTAL_PASSED} ({PASS_PERCENTAGE}%)
+    - **Test Cases Failed**: {TOTAL_FAILED} ({FAIL_PERCENTAGE}%)
+    - **Test Cases Skipped**: {TOTAL_SKIPPED} ({SKIP_PERCENTAGE}%)
+    
+    ### Results by Priority Level
+    | Priority | Planned | Executed | Passed | Failed | Pass Rate |
+    |----------|---------|----------|---------|---------|-----------|
+    | P0 - Critical | {P0_PLANNED} | {P0_EXECUTED} | {P0_PASSED} | {P0_FAILED} | {P0_PASS_RATE}% |
+    | P1 - High | {P1_PLANNED} | {P1_EXECUTED} | {P1_PASSED} | {P1_FAILED} | {P1_PASS_RATE}% |
+    | P2 - Medium | {P2_PLANNED} | {P2_EXECUTED} | {P2_PASSED} | {P2_FAILED} | {P2_PASS_RATE}% |
+    | P3 - Low | {P3_PLANNED} | {P3_EXECUTED} | {P3_PASSED} | {P3_FAILED} | {P3_PASS_RATE}% |
+    
+    ### Results by Test Category
+    | Category | Planned | Executed | Passed | Failed | Pass Rate |
+    |----------|---------|----------|---------|---------|-----------|
+    | Authentication | {AUTH_PLANNED} | {AUTH_EXECUTED} | {AUTH_PASSED} | {AUTH_FAILED} | {AUTH_PASS_RATE}% |
+    | Navigation | {NAV_PLANNED} | {NAV_EXECUTED} | {NAV_PASSED} | {NAV_FAILED} | {NAV_PASS_RATE}% |
+    | Forms | {FORM_PLANNED} | {FORM_EXECUTED} | {FORM_PASSED} | {FORM_FAILED} | {FORM_PASS_RATE}% |
+    | Data Grids | {GRID_PLANNED} | {GRID_EXECUTED} | {GRID_PASSED} | {GRID_FAILED} | {GRID_PASS_RATE}% |
+    | Workflows | {WORKFLOW_PLANNED} | {WORKFLOW_EXECUTED} | {WORKFLOW_PASSED} | {WORKFLOW_FAILED} | {WORKFLOW_PASS_RATE}% |
+    ```
+    
+    **Failure Analysis Section**:
+    ```markdown
+    ## 🔍 Comprehensive Failure Analysis
+    
+    ### 🚨 Critical Failures ({CRITICAL_FAILURE_COUNT})
+    
+    #### CF-001: Authentication System Failure
+    - **Test Case**: TC_AUTH_001 - User Login with Valid Credentials
+    - **Failure Type**: System Error
+    - **Root Cause**: Authentication service timeout after 30 seconds
+    - **Business Impact**: Users cannot access the application
+    - **Recommended Action**: Investigate authentication service performance
+    - **Priority**: P0 - Immediate fix required
+    - **Evidence**: [Screenshot](link) | [Video](link) | [Logs](link)
+    
+    ### ⚠️ Major Failures ({MAJOR_FAILURE_COUNT})
+    
+    #### MF-001: Data Grid Sorting Malfunction  
+    - **Test Case**: TC_GRID_003 - Sort by Date Column
+    - **Failure Type**: Functional Defect
+    - **Root Cause**: JavaScript error in sorting algorithm for date values
+    - **Business Impact**: Users cannot properly organize data views
+    - **Recommended Action**: Fix date sorting logic in grid component
+    - **Priority**: P1 - Fix before next release
+    - **Evidence**: [Screenshot](link) | [Console Logs](link)
+    ```
+    
+    **Performance Analysis Section**:
+    ```markdown
+    ## ⚡ Performance Analysis
+    
+    ### Page Load Performance
+    | Page Category | Average Load Time | Target | Status |
+    |---------------|-------------------|---------|---------|
+    | Dashboard Pages | {DASHBOARD_LOAD_TIME}ms | <3000ms | {DASH_PERF_STATUS} |
+    | Form Pages | {FORM_LOAD_TIME}ms | <2000ms | {FORM_PERF_STATUS} |
+    | Grid Pages | {GRID_LOAD_TIME}ms | <4000ms | {GRID_PERF_STATUS} |
+    | Detail Pages | {DETAIL_LOAD_TIME}ms | <2500ms | {DETAIL_PERF_STATUS} |
+    
+    ### Top Performance Issues
+    1. **Slow Dashboard Loading**: {SLOW_DASHBOARD_DETAILS}
+    2. **Grid Pagination Delays**: {GRID_PAGINATION_DETAILS}
+    3. **Modal Dialog Responsiveness**: {MODAL_RESPONSE_DETAILS}
+    ```
+
+stakeholder_communication:
+  title: "Stakeholder Communication Section"
+  content: |
+    ## ACTIONABLE STAKEHOLDER GUIDANCE
+    
+    ### For Executive Leadership
+    ```markdown
+    ## 👔 Executive Summary for Leadership
+    
+    ### Business Impact Assessment
+    - **Production Readiness**: {PRODUCTION_READINESS_ASSESSMENT}
+    - **Risk Level**: {OVERALL_RISK_LEVEL}
+    - **Timeline Impact**: {TIMELINE_IMPACT_ASSESSMENT}
+    - **Resource Requirements**: {RESOURCE_RECOMMENDATIONS}
+    
+    ### Financial Implications
+    - **Cost of Delayed Release**: {DELAY_COST_ESTIMATE}
+    - **Cost of Fixing Issues**: {FIX_COST_ESTIMATE}
+    - **Risk of Production Issues**: {PRODUCTION_RISK_COST}
+    
+    ### Strategic Recommendations
+    1. **Immediate Actions**: {IMMEDIATE_EXEC_ACTIONS}
+    2. **Short-term Planning**: {SHORT_TERM_EXEC_PLANNING}
+    3. **Long-term Strategy**: {LONG_TERM_EXEC_STRATEGY}
+    ```
+    
+    ### For Development Teams
+    ```markdown
+    ## 👨‍💻 Technical Team Action Items
+    
+    ### Immediate Priority Fixes (Next 24-48 Hours)
+    1. **Critical Issue CF-001**: {CRITICAL_FIX_DETAILS}
+       - **Assigned Team**: Backend Team
+       - **Estimated Effort**: {EFFORT_ESTIMATE}
+       - **Dependencies**: {DEPENDENCIES}
+    
+    2. **Critical Issue CF-002**: {CRITICAL_FIX_DETAILS_2}
+       - **Assigned Team**: Frontend Team  
+       - **Estimated Effort**: {EFFORT_ESTIMATE_2}
+       - **Dependencies**: {DEPENDENCIES_2}
+    
+    ### Sprint Planning Recommendations
+    - **Bug Fixes**: {BUG_FIX_STORY_POINTS} story points
+    - **Technical Debt**: {TECH_DEBT_STORY_POINTS} story points
+    - **Testing Improvements**: {TESTING_STORY_POINTS} story points
+    
+    ### Code Quality Improvements
+    - **Error Handling**: {ERROR_HANDLING_IMPROVEMENTS}
+    - **Performance Optimization**: {PERFORMANCE_IMPROVEMENTS}
+    - **Code Coverage**: {CODE_COVERAGE_RECOMMENDATIONS}
+    ```
+    
+    ### For QA and Testing Teams
+    ```markdown
+    ## 🧪 QA Team Recommendations
+    
+    ### Test Suite Enhancements
+    - **Additional Test Cases Needed**: {ADDITIONAL_TESTS_NEEDED}
+    - **Test Data Improvements**: {TEST_DATA_IMPROVEMENTS}
+    - **Automation Coverage Gaps**: {AUTOMATION_GAPS}
+    
+    ### Testing Process Improvements
+    - **Environment Stability**: {ENVIRONMENT_IMPROVEMENTS}
+    - **Test Execution Efficiency**: {EXECUTION_IMPROVEMENTS}
+    - **Reporting Enhancements**: {REPORTING_IMPROVEMENTS}
+    
+    ### Quality Gates Recommendations
+    - **Entry Criteria**: {ENTRY_CRITERIA_UPDATES}
+    - **Exit Criteria**: {EXIT_CRITERIA_UPDATES}
+    - **Definition of Done**: {DOD_UPDATES}
+    ```
+
+final_recommendations:
+  title: "Final Recommendations and Next Steps"
+  content: |
+    ## COMPREHENSIVE RECOMMENDATIONS AND ACTION PLAN
+    
+    ### Go/No-Go Decision Framework
+    ```markdown
+    ## 🚦 Release Decision Matrix
+    
+    ### Current Status Against Release Criteria
+    | **Criteria** | **Status** | **Weight** | **Score** |
+    |--------------|------------|------------|-----------|
+    | Critical Functions Working | {CRITICAL_STATUS} | 40% | {CRITICAL_SCORE}/10 |
+    | Performance Acceptable | {PERFORMANCE_STATUS} | 25% | {PERF_SCORE}/10 |
+    | Security Issues Resolved | {SECURITY_STATUS} | 20% | {SECURITY_SCORE}/10 |
+    | User Experience Quality | {UX_STATUS} | 15% | {UX_SCORE}/10 |
+    
+    ### **Overall Release Score: {OVERALL_RELEASE_SCORE}/10**
+    
+    ### Decision Thresholds
+    - **Score 8-10**: ✅ **GO** - Ready for production release
+    - **Score 6-7**: ⚠️ **CONDITIONAL GO** - Release with risk mitigation
+    - **Score 4-5**: ❌ **NO-GO** - Significant issues must be resolved
+    - **Score 0-3**: 🚫 **DEFER** - Major rework required
+    
+    ### **FINAL RECOMMENDATION: {FINAL_RECOMMENDATION}**
+    
+    {DETAILED_RECOMMENDATION_RATIONALE}
+    ```
+    
+    ### Risk Mitigation Strategy
+    ```markdown
+    ## 🛡️ Risk Mitigation Plan
+    
+    ### High Risk Items - Immediate Attention Required
+    1. **Authentication Failures**
+       - **Mitigation**: Implement fallback authentication mechanism
+       - **Monitoring**: Real-time authentication success rate alerts
+       - **Rollback Plan**: Revert to previous authentication system
+    
+    2. **Data Integrity Issues**  
+       - **Mitigation**: Enhanced data validation and backup procedures
+       - **Monitoring**: Data consistency checks and audit logs
+       - **Rollback Plan**: Database rollback procedures documented
+    
+    ### Medium Risk Items - Monitor and Improve
+    - **Performance Issues**: Implement performance monitoring
+    - **UI/UX Problems**: Plan usability improvements for next release
+    - **Browser Compatibility**: Document known limitations
+    ```
+    
+    ### Long-term Quality Strategy
+    ```markdown
+    ## 🎯 Long-term Quality Improvement Plan
+    
+    ### Process Improvements
+    1. **Continuous Testing Integration**
+       - Implement automated testing in CI/CD pipeline
+       - Set up quality gates at each development stage
+       - Establish performance benchmarking and monitoring
+    
+    2. **Quality Metrics and KPIs**
+       - Track defect escape rate and customer-reported issues
+       - Monitor test coverage and automation effectiveness
+       - Measure mean time to resolution for critical issues
+    
+    3. **Team Development**
+       - Invest in advanced testing tool training
+       - Establish quality engineering best practices
+       - Create cross-functional quality accountability
+    
+    ### Technology Investments
+    - **Test Automation Platform**: Enhance current framework capabilities
+    - **Performance Monitoring**: Real-time application performance insights
+    - **Quality Analytics**: Advanced reporting and trend analysis tools
+    ```
+    
+    ## 📞 **Contact and Support Information**
+    
+    **Report Generated By**: Automated Testing Crew  
+    **Report Date**: {REPORT_GENERATION_DATE}  
+    **Contact for Questions**: {SUPPORT_CONTACT}  
+    **Technical Support**: {TECHNICAL_SUPPORT_CONTACT}  
+    **Executive Escalation**: {EXECUTIVE_CONTACT}
+    
+    ---
+    
+    *This report contains comprehensive analysis of application quality based on automated testing results. All recommendations should be reviewed by appropriate stakeholders before implementation.*

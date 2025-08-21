@@ -1,0 +1,212 @@
+# Scripting Task Components
+
+generate_test_script:
+  title: "Test Script Generation Task"
+  content: |
+    Generate comprehensive Playwright test scripts for each test case in the test plan.
+    Scripts should be compatible with the MCP Playwright server and provide robust automation
+    with comprehensive error handling, logging, and evidence capture.
+    
+    ## SCRIPT GENERATION METHODOLOGY
+    
+    ### PLAYWRIGHT SCRIPT ARCHITECTURE
+    
+    **Base Test Structure Template**:
+    ```javascript
+    const { test, expect } = require('@playwright/test');
+    const config = require('../config/test-config');
+    const helpers = require('../common/blazor-helpers');
+    
+    test.describe('Test Suite: [Suite Name]', () => {
+        test.beforeEach(async ({ page }) => {
+            // Setup: Navigation and authentication
+            await page.goto(config.baseURL);
+            await helpers.authenticateUser(page, config.username, config.password);
+            await helpers.waitForBlazorLoad(page);
+        });
+        
+        test('[Test Case ID] - [Test Description]', async ({ page }) => {
+            // Test implementation with evidence capture
+        });
+        
+        test.afterEach(async ({ page }, testInfo) => {
+            // Cleanup and evidence capture
+            if (testInfo.status !== testInfo.expectedStatus) {
+                await helpers.captureFailureEvidence(page, testInfo);
+            }
+        });
+    });
+    ```
+    
+    ### BLAZOR-SPECIFIC HELPER FUNCTIONS
+    
+    **Authentication Helper**:
+    ```javascript
+    async function authenticateUser(page, username, password) {
+        await page.waitForSelector('a.login-button, button:has-text("Login")', { timeout: 30000 });
+        await page.click('a.login-button, button:has-text("Login")');
+        
+        // Handle login form
+        await page.fill('input[name="username"], input[type="email"]', username);
+        await page.fill('input[name="password"], input[type="password"]', password);
+        await page.click('button[type="submit"], button:has-text("Sign In")');
+        
+        // Wait for authentication success
+        await page.waitForSelector('button[aria-label="Menu"], .hamburger, nav.sidebar', { timeout: 60000 });
+    }
+    ```
+    
+    **Blazor Component Loading Helper**:
+    ```javascript
+    async function waitForBlazorLoad(page) {
+        await page.waitForFunction(() => {
+            return window.Blazor && window.Blazor._internal && 
+                   document.readyState === 'complete' &&
+                   !document.querySelector('.loading-spinner, [data-loading]');
+        }, { timeout: 30000 });
+    }
+    ```
+    
+    **Navigation Helper**:
+    ```javascript
+    async function navigateToPage(page, menuPath) {
+        const pathParts = menuPath.split(' > ');
+        
+        for (const [index, part] of pathParts.entries()) {
+            const selector = `[role="menuitem"]:has-text("${part}"), a:has-text("${part}")`;
+            await page.click(selector);
+            
+            if (index < pathParts.length - 1) {
+                // Wait for submenu to expand
+                await page.waitForTimeout(1000);
+            }
+        }
+        
+        await waitForBlazorLoad(page);
+    }
+    ```
+    
+    ### TEST SCRIPT CATEGORIES
+    
+    **Authentication Test Scripts**:
+    - Valid login scenarios with different user types
+    - Invalid login attempts and error handling
+    - Session management and timeout scenarios
+    - Logout functionality and session cleanup
+    
+    **Navigation Test Scripts**:
+    - Left sidebar menu expansion and navigation
+    - Breadcrumb navigation and page transitions
+    - Deep-link navigation and URL validation
+    - Back/forward browser navigation handling
+    
+    **Form Interaction Scripts**:
+    - Valid form submission with various data types
+    - Form validation testing with invalid inputs
+    - Required field validation and error messages
+    - Form reset and cancel functionality
+    
+    **Data Grid Operation Scripts**:
+    - Grid data loading and display verification
+    - Sorting functionality across different columns
+    - Pagination and page size management
+    - Row-level actions (View, Edit where safe)
+    - Search and filtering capabilities
+    
+    **Tab System Scripts**:
+    - Tab navigation and content switching
+    - Tab state persistence and data consistency
+    - Tab-specific actions and functionality
+    - Dynamic tab loading and error handling
+    
+    **Modal Dialog Scripts**:
+    - Modal opening and closing functionality
+    - Modal form interactions and validation
+    - Modal data persistence and state management
+    - Modal error handling and recovery
+    
+    ## SCRIPT QUALITY REQUIREMENTS
+    
+    ### Error Handling and Recovery
+    ```javascript
+    async function robustClick(page, selector, testId, maxRetries = 3) {
+        for (let attempt = 1; attempt <= maxRetries; attempt++) {
+            try {
+                await page.click(selector, { timeout: 10000 });
+                return; // Success
+            } catch (error) {
+                console.log(`Attempt ${attempt} failed for ${selector}: ${error.message}`);
+                if (attempt === maxRetries) {
+                    await captureEvidence(page, testId, `error-final-attempt`);
+                    throw error;
+                }
+                await page.waitForTimeout(1000 * attempt); // Exponential backoff
+            }
+        }
+    }
+    ```
+    
+    ### Evidence Capture Functions
+    ```javascript
+    async function captureEvidence(page, testId, step) {
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const screenshotPath = `{SAMPLE_DIR}/screenshots/${testId}-${step}-${timestamp}.png`;
+        
+        await page.screenshot({ 
+            path: screenshotPath, 
+            fullPage: true 
+        });
+        
+        // Capture HTML source
+        const html = await page.content();
+        const htmlPath = `{SAMPLE_DIR}/logs/${testId}-${step}-${timestamp}.html`;
+        require('fs').writeFileSync(htmlPath, html);
+        
+        return { screenshot: screenshotPath, html: htmlPath };
+    }
+    ```
+    
+    ### Script Organization Structure
+    ```
+    {SAMPLE_DIR}/scripts/
+    ├── common/
+    │   ├── auth-helpers.js       # Authentication utilities
+    │   ├── navigation-helpers.js # Navigation and page utilities
+    │   ├── blazor-helpers.js     # Blazor-specific utilities
+    │   └── evidence-helpers.js   # Screenshot and logging utilities
+    ├── config/
+    │   ├── test-config.js        # Environment configuration
+    │   └── test-data.json        # Test data sets
+    ├── tests/
+    │   ├── authentication/       # Login/logout test scripts
+    │   ├── navigation/          # Menu and page navigation tests
+    │   ├── forms/               # Form interaction tests
+    │   ├── grids/               # Data grid manipulation tests
+    │   ├── tabs/                # Tab system interaction tests
+    │   ├── modals/              # Modal dialog tests
+    │   └── workflows/           # End-to-end business process tests
+    └── fixtures/
+        ├── test-users.json       # User account test data
+        └── form-data.json        # Form input test data sets
+    ```
+    
+    ## SCRIPT VALIDATION REQUIREMENTS
+    
+    ### Code Quality Standards
+    - Clear, descriptive test and variable names
+    - Comprehensive error handling with meaningful messages
+    - Appropriate wait strategies for dynamic content
+    - Consistent code formatting and documentation
+    - Modular design with reusable helper functions
+    
+    ### Performance Optimization
+    - Efficient selector strategies to minimize wait times
+    - Proper resource cleanup and memory management
+    - Parallel execution where appropriate and safe
+    - Optimized screenshot and evidence capture
+    
+    ### Maintainability Features
+    - Configuration-driven test data and environment settings
+    - Parameterized tests for data-driven scenarios
+    - Clear separation of test logic and helper utilities
+    - Comprehensive logging for debugging and analysis

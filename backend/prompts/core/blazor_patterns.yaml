@@ -1,0 +1,72 @@
+# Blazor Application Exploration Patterns
+
+blazor_characteristics:
+  title: "Blazor Application Characteristics"
+  content: |
+    BLAZOR APPLICATION CHARACTERISTICS:
+    - Left navigation sidebar with hierarchical menu structure (menu → submenu)
+    - Action-rich pages with operation buttons (Add, Edit, Delete, Configure, Export, Import)
+    - Data grids/tables with row-level action icons (Edit, View, Remove, Details)
+    - Tab-based interfaces with sub-actions and content per tab
+    - Modal dialogs and popup forms for detailed operations and data entry
+    - Dynamic content loading and Blazor component state management
+    - Form validation with client-side and server-side validation patterns
+    - Breadcrumb navigation and contextual page hierarchies
+
+navigation_expansion_strategy:
+  title: "Navigation Expansion Strategy"
+  content: |
+    NAVIGATION EXPANSION METHODOLOGY:
+    1. **Sidebar Discovery**: Locate and expand left navigation sidebar/hamburger menu
+    2. **HTML Extraction**: Extract complete HTML to identify navigation elements and hierarchy
+    3. **Menu Inventory**: Create comprehensive list of ALL menu items and their structure
+    4. **Expandable Detection**: Identify menu items requiring interaction to reveal children
+    5. **Hierarchy Mapping**: Document parent-child relationships and navigation depth
+    6. **State Capture**: Take screenshots of expanded menu states for evidence
+
+recursive_exploration_pattern:
+  title: "Recursive Safe Exploration Pattern"
+  content: |
+    RECURSIVE EXPLORATION METHODOLOGY:
+    - **Safe Action Identification**: Focus on View, Details, Configure, Export operations
+    - **Child Page Discovery**: Execute safe actions to reveal additional content/pages
+    - **Recursive Analysis**: Apply full page analysis to each newly discovered page
+    - **Relationship Mapping**: Document parent-child page relationships and navigation paths
+    - **Breadcrumb Tracking**: Record complete navigation sequences for reproducibility
+    - **Loop Prevention**: Track visited pages to avoid infinite exploration cycles
+
+component_analysis_patterns:
+  title: "Blazor Component Analysis Patterns"
+  content: |
+    BLAZOR-SPECIFIC COMPONENT ANALYSIS:
+    - **Tab System Analysis**: Click each tab, analyze content, document tab-specific actions
+    - **Data Grid Deep Dive**: Identify columns, row actions, pagination, search/filter capabilities
+    - **Modal Dialog Mapping**: Document popup triggers, content, and interaction workflows
+    - **Form Element Inventory**: Catalog input types, validation patterns, submission flows
+    - **Dynamic Loading Detection**: Identify AJAX calls, component state changes, async operations
+    - **Inter-Component Communication**: Document how components interact and share state
+
+page_analysis_framework:
+  title: "Comprehensive Page Analysis Framework"
+  content: |
+    DEEP PAGE ANALYSIS METHODOLOGY:
+    1. **Page Load Verification**: Ensure complete Blazor component loading before analysis
+    2. **HTML Source Extraction**: Capture complete DOM structure for technical analysis
+    3. **Business Purpose Identification**: Document page function and user value proposition
+    4. **Actionable Element Inventory**: Catalog all buttons, links, icons, forms, and controls
+    5. **Interaction Flow Mapping**: Document element relationships and workflow sequences
+    6. **Visual Evidence Capture**: Take full-page screenshots for documentation
+    7. **Technical Metadata Collection**: Record URLs, IDs, classes, and technical identifiers
+
+exploration_targets:
+  title: "100+ Page Exploration Targets"
+  content: |
+    TARGET PAGE CATEGORIES FOR COMPREHENSIVE COVERAGE:
+    - **Dashboard Pages**: Main overview screens, analytics, reporting dashboards
+    - **Data Management Pages**: CRUD operations, list views, detail views, configuration
+    - **Administrative Pages**: Settings, user management, system configuration
+    - **Reporting Pages**: Reports, exports, analytics, data visualization
+    - **Form-Heavy Pages**: Data entry, editing, complex forms with validation
+    - **Integration Pages**: API management, external system connections
+    - **Help/Documentation Pages**: User guides, system information, about pages
+    - **Modal/Popup Content**: Dialog forms, confirmation screens, detail popups
